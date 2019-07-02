@@ -3,7 +3,7 @@
  */
 
 import {AppRegistry} from 'react-native';
-import App from './ReactNative/main/App';
+import App from './ReactNative/App';
 import {name as appName} from './app.json';
 
 
