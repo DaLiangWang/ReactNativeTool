@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
-import BaseView from '../Base/BaseView';
+import BaseView from '../../Base/BaseView';
 
 export default class Mine extends BaseView {
     constructor(props) {
         super(props);
-        this.state.title = "xxx";
+        this.navigationBar.title = "xxx";
     }
 
     renderContent() {

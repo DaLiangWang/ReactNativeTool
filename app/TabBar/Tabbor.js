@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import TabNavigator from 'react-native-tab-navigator';
-import Home from "../Main/Home";
-import Mine from "../Main/Mine";
+import Home from "../Main/Home/Home";
+import Mine from "../Main/Mine/Mine";
 import NavigationLogin from '../AppRouter/OtherRouter';
 
 export default class Tabbor extends Component {

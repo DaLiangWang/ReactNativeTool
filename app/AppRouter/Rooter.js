@@ -1,7 +1,7 @@
 //RooterNavigator
 import {createAppContainer,createStackNavigator,createSwitchNavigator} from 'react-navigation';
-import Home from '../Main/Home';
-import Mine from '../Main/Mine';
+import Home from '../Main/Home/Home';
+import Mine from '../Main/Mine/Mine';
 import Tabbor from '../TabBar/Tabbor';
 
 

@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 import NavigationBar from '../TabBar/NavigationBar'
 
 export default class BaseView extends Component {
-    state = {
+    navigationBar = {
         title : null,
         leftTitle: null,
         leftImage: null,
@@ -20,7 +20,8 @@ export default class BaseView extends Component {
 
 
     leftAction(){
-        navigator.pop();
+        const { navigation } = this.props;
+        navigation.goBack();
         console.log('leftAction');
     }
     rightAction(){
@@ -30,7 +31,7 @@ export default class BaseView extends Component {
 
     renderHeader() {
         return (
-            <NavigationBar leftAction={this.leftAction.bind(this)} rightAction={this.rightAction.bind(this)} {...this.state}/>
+            <NavigationBar leftAction={this.leftAction.bind(this)} rightAction={this.rightAction.bind(this)} {...this.navigationBar}/>
         );
     }
     renderContent() {
