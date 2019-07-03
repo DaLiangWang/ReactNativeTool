@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View,Navigator,FlatList ,TouchableOpacity} from 'react-native';
-import BaseView from '../../Base/BaseView';
+import BaseView from '../../common/base/BaseView';
 
 export default class Home extends BaseView {
     state = {
@@ -12,7 +12,7 @@ export default class Home extends BaseView {
         data:[
             {
                 id:"1",
-                title:"1",
+                title:"111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111",
             },
             {
                 id:"2",
@@ -64,6 +64,11 @@ export default class Home extends BaseView {
 
     _onRefresh = () => {
         this.setState({refreshing: true});
+
+        this.timer = setTimeout(() => {
+            this.setState({refreshing: false});
+            this.timer && clearTimeout(this.timer);
+        }, 1500);
         // fetchData().then(() => {
         // 每1000毫秒对showText状态做一次取反操作
         // setInterval(() => {

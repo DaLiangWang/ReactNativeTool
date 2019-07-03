@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View ,Navigator} from 'react-native';
-import Navigation from './AppRouter/Rooter';
+import Navigation from './router/Rooter';
 
 
 export default class App extends Component<Props> {

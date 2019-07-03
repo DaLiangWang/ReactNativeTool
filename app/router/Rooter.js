@@ -1,18 +1,18 @@
 //RooterNavigator
 import {createAppContainer,createStackNavigator,createSwitchNavigator} from 'react-navigation';
-import Home from '../Main/Home/Home';
-import Mine from '../Main/Mine/Mine';
-import Tabbor from '../TabBar/Tabbor';
+import Home from '../pages/Home/Home';
+import Mine from '../pages/Mine/Mine';
+import TabBar from '../component/tabBar/TabBar';
 
 
 const navigator = createStackNavigator({
-        Tabbor:{
-            screen:Tabbor,
+        TabBar:{
+            screen:TabBar,
         },
         Home:{
             screen:Home,
             navigationOptions: {
-                title: 'Home',
+                // title: 'Home',
                 // gesturesEnabled: false,
                 // tabBarVisible: true,
             }

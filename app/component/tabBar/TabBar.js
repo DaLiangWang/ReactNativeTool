@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import TabNavigator from 'react-native-tab-navigator';
-import Home from "../Main/Home/Home";
-import Mine from "../Main/Mine/Mine";
-import NavigationLogin from '../AppRouter/OtherRouter';
+import Home from "../../pages/Home/Home";
+import Mine from "../../pages/Mine/Mine";
+import NavigationLogin from '../../router/OtherRouter';
 
-export default class Tabbor extends Component {
+export default class TabBar extends Component {
     state = {
         selectedTab : "home"
     }

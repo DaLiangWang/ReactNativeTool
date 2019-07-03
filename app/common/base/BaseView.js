@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
-import NavigationBar from '../TabBar/NavigationBar'
+import NavigationBar from '../../component/tabBar/NavigationBar'
 
 export default class BaseView extends Component {
     navigationBar = {
