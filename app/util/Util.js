@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import {Platform} from "react-native";
 
-
-const serverHost = ""
 const Util = {
     isAndroid(){
         return (Platform.OS === 'android');

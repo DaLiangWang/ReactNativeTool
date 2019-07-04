@@ -28,7 +28,7 @@ export default class Mine extends BaseView {
             <View style={{flex: 1}}>
                 <BaseTableView
                     url={"https://raw.githubusercontent.com/DaLiangWang/ReactNativeTool/dev/TestData/listData.json"}
-                    renderView={this.renderView.bind()}
+                    renderView={this.renderView.bind(this)}
                     {...this.props}
                 />
             </View>

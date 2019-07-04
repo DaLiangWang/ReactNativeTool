@@ -5,17 +5,31 @@ import Util from "../../util/Util";
 
 
 export default class BaseTableView extends PureComponent {
-    state = {
-        data: [],
-        refreshing:false,
-        showFoot: 'noLoading',
-    };
     constructor(props) {
         super(props);
-        console.log(this);
+        this.props = {
+            /** 二次处理数据 */
+            dataFrom:"",
+            /** Item创建 */
+            renderView: "",
+            /** item分割线 */
+            separatorView: "",
+            /** 空白页 */
+            createEmptyView:"",
+            /** 头部组件的渲染 */
+            renderHeaderView:"",
+            /** 尾部组件的渲染 */
+            renderFooterView:"",
+        }
+
+        this.state = {
+            data: [],
+            refreshing:false,
+            showFoot: 'noLoading',
+        };
     }
 
-    //视图加载完毕
+    /** 视图加载完毕 */
     async componentDidMount(){
         const {url,params} = this.props;
         NetUtil.http(url,params,'GET',response => {
@@ -26,33 +40,84 @@ export default class BaseTableView extends PureComponent {
         })
     }
 
-    //二次处理数据
+
+    /** 二次处理数据 */
     dataFrom(data){
-        return data;
+        if (typeof(this.props.dataFrom) === 'function') {
+            return this.props.dataFrom(item.item);
+        }else {
+            return data;
+        }
     }
-    //指定ID为列表Item的Key
+
+    /** 指定ID为列表Item的Key */
     _extraUniqueKey(item, index) {
         return "index" + index + item;
     }
-    //点击Item回掉
-    _onPressItem = (id) => {
-        Alert.alert("你点击了按钮！" + id);
-    };
 
-    //加载列表Item视图
-    _renderItem = ({item}) => (
-        this.props.renderView(item)
-    );
+    /** 加载列表Item视图 */
+    _renderItem(item){
+        if (typeof(this.props.renderView) === 'function') {
+            return this.props.renderView(item.item);
+        }else {
+            return <Text>需要添加renderView方法</Text>
+        }
+    }
+
+    /** 空白页 */
+    _createEmpty(item) {
+        if (typeof(this.props.createEmptyView) === 'function') {
+            return this.props.createEmptyView();
+        }else {
+            return (
+                <View style={{height: '100%', alignItems: 'center', justifyContent: 'center'}}>
+                    <ActivityIndicator />
+                </View>
+            )
+        }
+    }
+
+    /** 分割线 */
+    _separator(item) {
+        if (typeof(this.props.separatorView) === 'function') {
+            return this.props.separatorView(item.item);
+        }else {
+            return <View style={{height: 1, backgroundColor: '#999999'}}/>;
+        }
+    }
+
+    /** 头部组件的渲染 */
+    _renderHeader(item){
+        if (typeof(this.props.renderHeaderView) === 'function') {
+            return this.props.renderHeaderView(item);
+        }else {
+            return (
+                null
+            )
+        }
+    }
+
+    /** 尾部组件的渲染 */
+    _renderFooter(item){
+        if (typeof(this.props.renderFooterView) === 'function') {
+            return this.props.renderFooterView(item);
+        }else {
+            return (
+                <FooterView
+                    status={this.state.showFoot}
+                    {...this.props}
+                />
+            )
+        }
+    }
 
 
 
-
-    //下拉刷新
+    /** 下拉刷新 */
     _headerRefresh(item){
-        // console.warn(item);
         this.loadData();
     }
-    //上拉加载
+    /** 上拉加载 */
     _footReached(item){
         if (this.state.showFoot === 'noMoreData') {
             return;
@@ -63,8 +128,7 @@ export default class BaseTableView extends PureComponent {
         // console.warn(item);
         this.loadMoreData();
     }
-
-    //加载数据
+    /** 加载数据 */
     async loadData(){
         this.setState({refreshing: true});
         const {url,params} = this.props;
@@ -90,74 +154,9 @@ export default class BaseTableView extends PureComponent {
         })
     }
 
-    /** 尾部组件的渲染 */
-    _renderFooter(){
-        if(this.state.showFoot === 'noLoading'){
-            return (
-                <View >
-                    <Text style={{color:'#999999',fontSize:14,marginTop:5,marginBottom:5,}} onPress={this._footReached.bind(this)}>
-                        上拉或点击加载
-                    </Text>
-                </View>
-            );
-        } else if(this.state.showFoot === 'loosenLoad'){
-            return (
-                <View>
-                    <Text style={{color:'#999999',fontSize:14,marginTop:5,marginBottom:5,}}>
-                        松开刷新
-                    </Text>
-                </View>
-            );
-        } else if (this.state.showFoot === 'noMoreData') {
-            return (
-                <View style={{height:30,alignItems:'center',justifyContent:'flex-start',}}>
-                    <Text style={{color:'#999999',fontSize:14,marginTop:5,marginBottom:5,}}>
-                        没有更多数据了
-                    </Text>
-                </View>
-            );
-        } else if(this.state.showFoot === 'loading') {
-            return (
-                <View>
-                    <ActivityIndicator />
-                    <Text style={{color:'#999999',fontSize:14,marginTop:5,marginBottom:5,}}>
-                        正在加载更多数据...
-                    </Text>
-                </View>
-            );
-        }
-    }
-    /** 空布局 */
-    _createEmptyView() {
-        return (
-            <View style={{height: '100%', alignItems: 'center', justifyContent: 'center'}}>
-                <Text style={{fontSize: 16}}>
-                    暂无列表数据
-                </Text>
-            </View>
-        );
-    }
-    /** 分割线 */
-    _separator() {
-        return <View style={{height: 1, backgroundColor: '#999999'}}/>;
-    }
     /** 滑动监听*/
     _onScroll = (event) => {
-        // let contentSizeH = event.nativeEvent.contentSize.height;
-        // let layoutMeasurementH = event.nativeEvent.layoutMeasurement.height;
-        // let h = contentSizeH - layoutMeasurementH;
-        //
-        // let contentOffsetY = event.nativeEvent.contentOffset.y;
-        //
-        // if ((contentOffsetY - h) > 50){
-        //     this.setState({showFoot:'loosenLoad'});
-        // } else {
-        //     if(this.state.showFoot !== 'loading') {
-        //         this.setState({showFoot: 'noLoading'});
-        //     }
-        // }
-        // console.log("contentOffset滑动结束监听："+ contentOffsetY);
-        // console.log("targetContentOffset滑动结束监听："+ h);
+
     }
     /** 滑动结束监听 */
     _onScrollEndDrag = (event) => {
@@ -171,8 +170,8 @@ export default class BaseTableView extends PureComponent {
             if ((contentOffset - targetContentOffset) > 50){
                 this._footReached();
             }
-            console.log("contentOffset滑动结束监听："+ contentOffset);
-            console.log("targetContentOffset滑动结束监听："+ targetContentOffset);
+            // console.log("contentOffset滑动结束监听："+ contentOffset);
+            // console.log("targetContentOffset滑动结束监听："+ targetContentOffset);
         }
     }
 
@@ -188,23 +187,20 @@ export default class BaseTableView extends PureComponent {
                         //item标识
                         keyExtractor={this._extraUniqueKey}
                         //item显示的布局
-                        renderItem={this._renderItem}
+                        renderItem={this._renderItem.bind(this)}
+                        //分割线
+                        ItemSeparatorComponent={this._separator.bind(this)}
                         // 空布局
-                        ListEmptyComponent={this._createEmptyView}
+                        ListEmptyComponent={this._createEmpty.bind(this)}
                         //添加头尾布局
-                        // ListHeaderComponent={this._createListHeader}
-                        ListFooterComponent={this._renderFooter()}
-
+                        ListHeaderComponent={this._renderHeader.bind(this)}
+                        ListFooterComponent={this._renderFooter.bind(this)}
                         //下拉刷新相关
                         onRefresh={this._headerRefresh.bind(this)}
-                        // onRefresh={() => this._onRefresh()}
-                        //refreshControl={}
                         refreshing={this.state.refreshing}
                         //加载更多
                         onEndReached={Util.isAndroid()?this._footReached.bind(this):null}
                         onEndReachedThreshold={0.1}
-                        //分割线
-                        ItemSeparatorComponent={this._separator}
                         //滑动监听
                         onScroll={this._onScroll}
                         onScrollEndDrag={this._onScrollEndDrag}
@@ -212,5 +208,51 @@ export default class BaseTableView extends PureComponent {
                 }
             </View>
         );
+    }
+}
+
+
+class FooterView extends Component {
+    footReached () {
+        this.props.footReached();
+    };
+
+    render(){
+        const {status} = this.props;
+
+        if(status === 'noLoading'){
+            return (
+                <View >
+                    <Text style={{color:'#999999',fontSize:14,marginTop:5,marginBottom:5,}}>
+                        上加载
+                    </Text>
+                </View>
+            );
+        } else if(status === 'loosenLoad'){
+            return (
+                <View>
+                    <Text style={{color:'#999999',fontSize:14,marginTop:5,marginBottom:5,}}>
+                        松开刷新
+                    </Text>
+                </View>
+            );
+        } else if (status === 'noMoreData') {
+            return (
+                <View style={{height:30,alignItems:'center',justifyContent:'flex-start',}}>
+                    <Text style={{color:'#999999',fontSize:14,marginTop:5,marginBottom:5,}}>
+                        没有更多数据了
+                    </Text>
+                </View>
+            );
+        } else if(status === 'loading') {
+            return (
+                <View>
+                    <ActivityIndicator />
+                    <Text style={{color:'#999999',fontSize:14,marginTop:5,marginBottom:5,}}>
+                        正在加载更多数据...
+                    </Text>
+                </View>
+            );
+        }
     }
 }
