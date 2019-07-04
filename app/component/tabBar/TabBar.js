@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import TabNavigator from 'react-native-tab-navigator';
 import Home from "../../pages/Home/Home";
-import Mine from "../../pages/Mine/Mine";
+import Table from "../../pages/Mine/table";
 import NavigationLogin from '../../router/OtherRouter';
 
 export default class TabBar extends Component {
@@ -56,13 +56,13 @@ export default class TabBar extends Component {
                     <NavigationLogin></NavigationLogin>
                 </TabNavigator.Item>
                 <TabNavigator.Item
-                    title="我的"
-                    selected={this.state.selectedTab === 'mine'}
+                    title="table"
+                    selected={this.state.selectedTab === 'table'}
                     // renderIcon={() => <Text>M</Text>}
                     // renderSelectedIcon={() => <Icon name={ 'ios-more' } size={30} color={'#4E78E7'}/>}
-                    onPress={() => this.setState({ selectedTab: 'mine' })}
+                    onPress={() => this.setState({ selectedTab: 'table' })}
                 >
-                    <Mine {...this.props} />
+                    <Table {...this.props} />
                 </TabNavigator.Item>
             </TabNavigator>
         );

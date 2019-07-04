@@ -1,7 +1,7 @@
 //RooterNavigator
 import {createAppContainer,createStackNavigator,createSwitchNavigator} from 'react-navigation';
 import Home from '../pages/Home/Home';
-import Mine from '../pages/Mine/Mine';
+import Table from '../pages/Mine/table';
 import TabBar from '../component/tabBar/TabBar';
 
 
@@ -17,8 +17,8 @@ const navigator = createStackNavigator({
                 // tabBarVisible: true,
             }
         },
-        Mine:{
-            screen:Mine,
+        table:{
+            screen:Table,
         }
     });
 

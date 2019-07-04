@@ -3,12 +3,11 @@ import {Image, Text, View,Button,Alert} from 'react-native';
 import BaseView from '../../common/base/BaseView';
 import BaseTableView from "../../common/base/BaseTableView";
 
-export default class Mine extends BaseView {
+export default class Table extends BaseView {
     constructor(props) {
         super(props);
-        this.navigationBar.title = "xxx";
+        this.navigationBar.title = "table";
     }
-
 
     renderView(item){
         return (
@@ -23,7 +22,6 @@ export default class Mine extends BaseView {
 
     renderContent() {
         // const {data} = this.dataFrom;
-
         return (
             <View style={{flex: 1}}>
                 <BaseTableView
