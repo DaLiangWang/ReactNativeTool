@@ -3,46 +3,28 @@
   "msg": "操作成功",
   "data": [
     {
-      "creator": "1002000002ITLA12XO06",
-      "creatorShowName": "Admin(适途)",
-      "lastUpdateDate": "2019-03-25 16:32:28",
-      "objectTypeName": "XOT_LIBTOP",
-      "objectTypeDisplayName": "文档库顶层节点"
+      "id": "111",
+      "test" : "qqq"
     },
     {
-      "creator": "1002000002ITLA12XO06",
-      "creatorShowName": "Admin(适途)",
-      "lastUpdateDate": "2019-03-25 16:33:04",
-      "objectTypeName": "XOT_LIBTOP",
-      "objectTypeDisplayName": "文档库顶层节点"
+      "id": "222",
+      "test": "www"
     },
     {
-      "creator": "1002000002ITLA12XO06",
-      "creatorShowName": "Admin(适途)",
-      "lastUpdateDate": "2019-03-25 16:33:19",
-      "objectTypeName": "XOT_LIBTOP",
-      "objectTypeDisplayName": "文档库顶层节点"
+      "id": "333",
+      "test": "eee"
     },
     {
-      "creator": "1002000002ITLA12XO06",
-      "creatorShowName": "Admin(适途)",
-      "lastUpdateDate": "2019-03-25 16:33:33",
-      "objectTypeName": "XOT_LIBTOP",
-      "objectTypeDisplayName": "文档库顶层节点"
+      "id": "444",
+      "test": "rrr"
     },
     {
-      "creator": "1002001U00JTIEHBYU01",
-      "creatorShowName": "aa(aab)",
-      "lastUpdateDate": "2019-03-27 09:53:30",
-      "objectTypeName": "XOT_LIBTOP",
-      "objectTypeDisplayName": "文档库顶层节点"
+      "id": "555",
+      "test": "ttt"
     },
     {
-      "creator": "1002000002ITLA12XO06",
-      "creatorShowName": "Admin(适途)",
-      "lastUpdateDate": "2019-04-08 14:08:21",
-      "objectTypeName": "XOT_LIBTOP",
-      "objectTypeDisplayName": "文档库顶层节点"
+      "id": "666",
+      "test": "yyy"
     }
   ]
 }
