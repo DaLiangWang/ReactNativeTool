@@ -1,7 +1,7 @@
 import React, { Component,PureComponent } from 'react';
-import {Text, View, FlatList, TouchableOpacity, ActivityIndicator, Alert} from 'react-native';
+import {Text, View, FlatList, TouchableOpacity, ActivityIndicator, Alert, Platform} from 'react-native';
 import NetUtil from "../../util/NetUtil";
-import PropTypes from 'prop-types';
+import Util from "../../util/Util";
 
 
 export default class BaseTableView extends PureComponent {
@@ -92,7 +92,23 @@ export default class BaseTableView extends PureComponent {
 
     /** 尾部组件的渲染 */
     _renderFooter(){
-        if (this.state.showFoot === 'noMoreData') {
+        if(this.state.showFoot === 'noLoading'){
+            return (
+                <View >
+                    <Text style={{color:'#999999',fontSize:14,marginTop:5,marginBottom:5,}} onPress={this._footReached.bind(this)}>
+                        上拉或点击加载
+                    </Text>
+                </View>
+            );
+        } else if(this.state.showFoot === 'loosenLoad'){
+            return (
+                <View>
+                    <Text style={{color:'#999999',fontSize:14,marginTop:5,marginBottom:5,}}>
+                        松开刷新
+                    </Text>
+                </View>
+            );
+        } else if (this.state.showFoot === 'noMoreData') {
             return (
                 <View style={{height:30,alignItems:'center',justifyContent:'flex-start',}}>
                     <Text style={{color:'#999999',fontSize:14,marginTop:5,marginBottom:5,}}>
@@ -109,24 +125,7 @@ export default class BaseTableView extends PureComponent {
                     </Text>
                 </View>
             );
-        } else if(this.state.showFoot === 'noLoading'){
-            return (
-                <View>
-                    <Text style={{color:'#999999',fontSize:14,marginTop:5,marginBottom:5,}}>
-                        上拉加载
-                    </Text>
-                </View>
-            );
-        } else if(this.state.showFoot === 'loosenLoad'){
-            return (
-                <View>
-                    <Text style={{color:'#999999',fontSize:14,marginTop:5,marginBottom:5,}}>
-                        松开刷新
-                    </Text>
-                </View>
-            );
         }
-
     }
     /** 空布局 */
     _createEmptyView() {
@@ -160,17 +159,21 @@ export default class BaseTableView extends PureComponent {
         // console.log("contentOffset滑动结束监听："+ contentOffsetY);
         // console.log("targetContentOffset滑动结束监听："+ h);
     }
-    /**
-     * 滑动结束监听
-     */
+    /** 滑动结束监听 */
     _onScrollEndDrag = (event) => {
-        let contentOffset = event.nativeEvent.contentOffset.y;
-        let targetContentOffset = event.nativeEvent.targetContentOffset.y;
-        if ((contentOffset - targetContentOffset) > 50){
-            this._footReached();
+        if (Util.isIOS()){
+            let contentOffset = event.nativeEvent.contentOffset.y;
+
+            let contentSizeH = event.nativeEvent.contentSize.height;
+            let layoutMeasurementH = event.nativeEvent.layoutMeasurement.height;
+            let targetContentOffset = contentSizeH - layoutMeasurementH;
+
+            if ((contentOffset - targetContentOffset) > 50){
+                this._footReached();
+            }
+            console.log("contentOffset滑动结束监听："+ contentOffset);
+            console.log("targetContentOffset滑动结束监听："+ targetContentOffset);
         }
-        // console.log("contentOffset滑动结束监听："+ contentOffset);
-        // console.log("targetContentOffset滑动结束监听："+ targetContentOffset);
     }
 
     render() {
@@ -194,12 +197,12 @@ export default class BaseTableView extends PureComponent {
 
                         //下拉刷新相关
                         onRefresh={this._headerRefresh.bind(this)}
-                        //onRefresh={() => this._onRefresh()}
+                        // onRefresh={() => this._onRefresh()}
                         //refreshControl={}
                         refreshing={this.state.refreshing}
                         //加载更多
-                        // onEndReached={this._footReached.bind(this)}
-                        // onEndReachedThreshold={0.001}
+                        onEndReached={Util.isAndroid()?this._footReached.bind(this):null}
+                        onEndReachedThreshold={0.1}
                         //分割线
                         ItemSeparatorComponent={this._separator}
                         //滑动监听
