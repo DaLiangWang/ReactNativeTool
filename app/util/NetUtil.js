@@ -3,20 +3,28 @@ import React, {Component} from 'react';
 
 const serverHost = ""
 let NetUtil = {
-    get(url, data, callback, errorCallbak) {
+    get(url, data, callback, errorCallback) {
+        this.http(url,data,"GET",callback,errorCallback);
+    },
+    getTo(url, data) {
+        return this.httpTo(url,data,"GET");
+    },
 
 
 
+
+
+    http(url, data , method , callback, errorCallback) {
         url = serverHost + url;
 
+        //设置请求头
         let headers = {
             'Accept': 'application/json',
             'Content-Type': 'application/x-www-form-urlencoded',
         };
-
-
+        //设置请求参数
         let fetchOptions = {
-            method: 'POST',
+            method: method,
             headers: headers,
             body: data
         };
@@ -24,20 +32,53 @@ let NetUtil = {
         try {
             fetch(url, fetchOptions)
                 .then((response) => {
-                    let a = response.json();
-                    return a;
+                    return response.json();
                 })
                 .then((responseJson) => {
-                    let data = JSON.parse(responseJson);
-                    callback(data);
+                    callback(responseJson);
                 }).catch((err) => {
-                    if (typeof(errorCallbak) === 'function') {
-                        errorCallbak(err);
+                    if (typeof(errorCallback) === 'function') {
+                        errorCallback(err);
                     }
             });
         } catch (e) {
-            errorCallbak(e)
+            errorCallback(e)
         }
+    },
+
+    httpTo(url, data, method ) {
+        let userPromise = new Promise(function (resolve, reject) {
+                let headers = {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                };
+
+            let fetchOptions = {
+                    method: method,
+                    headers: headers,
+                    body: data,
+                };
+                return resolve(fetchOptions);
+            });
+
+        return new Promise(function (resolve, reject) {
+            userPromise.then(function (fetchOptions) {
+                try {
+                    fetch(url, fetchOptions)
+                        .then(function (response) {
+                            return response.json();
+                        })
+                        .then((responseJson) => {
+                            resolve(responseJson);
+                        }).catch((err) => {
+                        reject(err);
+                    })
+                } catch (e) {
+                    reject('服务器异常！--02');
+                }
+            });
+
+        })
     },
 
 
