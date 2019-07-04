@@ -46,7 +46,7 @@ export default class Mine extends BaseView {
         return (
             <View style={{flex: 1}}>
                 <BaseTableView
-                    dataFrom={data}
+                    url={"https://raw.githubusercontent.com/DaLiangWang/ReactNativeTool/dev/TestData/listData"}
                     renderView={this.renderView.bind()}
                     {...this.props}
                 />

@@ -1,15 +1,28 @@
 import React, { Component } from 'react';
 import { Text, View,FlatList ,TouchableOpacity } from 'react-native';
+import NetUtil from "../../util/NetUtil";
 
 export default class BaseTableView extends Component {
     state = {
+        dataFrom: '',
         selected: '',
         refreshing:false
     };
     constructor(props) {
         super(props);
         console.log(this);
+
     }
+
+    componentDidMount(){
+        const {url,params} = this.props;
+        if (url){
+            NetUtil.get(url,params,(request)=>{
+                console.log(request);
+            })
+        }
+    }
+
 
 
     _keyExtractor = (item, index) => item.id;
@@ -35,7 +48,7 @@ export default class BaseTableView extends Component {
 
 
     render() {
-        const {dataFrom} = this.props;
+        const {dataFrom,refreshing} = this.state;
         return (
             <View style={{ flex: 1 }}>
                 <FlatList
@@ -44,7 +57,7 @@ export default class BaseTableView extends Component {
                     keyExtractor={this._keyExtractor}
                     renderItem={this._renderItem}
                     onRefresh={this._onRefresh}
-                    refreshing={this.state.refreshing}
+                    refreshing={refreshing}
                 />
             </View>
         );
