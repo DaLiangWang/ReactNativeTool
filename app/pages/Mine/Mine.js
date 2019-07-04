@@ -9,31 +9,12 @@ export default class Mine extends BaseView {
         this.navigationBar.title = "xxx";
     }
 
-    dataFrom = {
-        data:[
-            {
-                id:"1",
-                title:"11111",
-            },
-            {
-                id:"2",
-                title:"2",
-            },
-            {
-                id:"3",
-                title:"3",
-            },
-        ]
-    }
 
     renderView(item){
         return (
             <View>
                 <Button
-                    onPress={() => {
-                        Alert.alert("你点击了按钮！");
-                    }}
-                    title="点我！"
+                    title={item.test}
                 />
             </View>
         )
@@ -41,12 +22,12 @@ export default class Mine extends BaseView {
 
 
     renderContent() {
-        const {data} = this.dataFrom;
+        // const {data} = this.dataFrom;
 
         return (
             <View style={{flex: 1}}>
                 <BaseTableView
-                    url={"https://raw.githubusercontent.com/DaLiangWang/ReactNativeTool/dev/TestData/listData"}
+                    url={"https://raw.githubusercontent.com/DaLiangWang/ReactNativeTool/dev/TestData/listData.json"}
                     renderView={this.renderView.bind()}
                     {...this.props}
                 />

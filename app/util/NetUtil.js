@@ -3,6 +3,15 @@ import React, {Component} from 'react';
 
 const serverHost = ""
 let NetUtil = {
+    /**
+     *       NetUtil.http(url,params,'GET',response => {
+                 console.log(response);
+                 this.setState({
+                     refreshing: false,
+                     data:response.data
+                 });
+             })
+     * */
     get(url, data, callback, errorCallback) {
         this.http(url,data,"GET",callback,errorCallback);
     },
