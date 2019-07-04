@@ -4,7 +4,7 @@ import BaseView from '../../common/base/BaseView';
 
 export default class Home extends BaseView {
     state = {
-        selected: (new Map(): Map<string, boolean>),
+        selected: '',
         refreshing:false
     };
 
@@ -12,7 +12,7 @@ export default class Home extends BaseView {
         data:[
             {
                 id:"1",
-                title:"111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111",
+                title:"11111",
             },
             {
                 id:"2",
@@ -43,21 +43,15 @@ export default class Home extends BaseView {
 
     _keyExtractor = (item, index) => item.id;
 
-    _onPressItem = (id: string) => {
-        // updater functions are preferred for transactional updates
-        this.setState((state) => {
-            // copy the map rather than modifying state.
-            const selected = new Map(state.selected);
-            selected.set(id, !selected.get(id)); // toggle
-            return {selected};
-        });
+    _onPressItem = (id) => {
+        this.setState({selected:id});
     };
 
     _renderItem = ({item}) => (
         <MyListItem
             id={item.id}
             onPressItem={this._onPressItem}
-            selected={!!this.state.selected.get(item.id)}
+            selected={this.state.selected}
             title={item.title}
         />
     );
@@ -69,14 +63,6 @@ export default class Home extends BaseView {
             this.setState({refreshing: false});
             this.timer && clearTimeout(this.timer);
         }, 1500);
-        // fetchData().then(() => {
-        // 每1000毫秒对showText状态做一次取反操作
-        // setInterval(() => {
-        //     this.setState({refreshing: !this.state.refreshing});
-        // }, 2000);
-        // this.setState({refreshing: !this.state.refreshing});
-        //
-        // });
     }
 
     renderContent() {
@@ -102,7 +88,7 @@ class MyListItem extends React.PureComponent {
     };
 
     render() {
-        const textColor = this.props.selected ? "red" : "yellow";
+        const textColor = (this.props.selected === this.props.id) ? "red" : "yellow";
         return (
             <TouchableOpacity onPress={this._onPress}>
                 <View>
