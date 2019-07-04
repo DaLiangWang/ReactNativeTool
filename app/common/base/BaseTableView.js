@@ -128,7 +128,6 @@ export default class BaseTableView extends PureComponent {
         }
 
     }
-
     /** 空布局 */
     _createEmptyView() {
         return (
@@ -139,28 +138,25 @@ export default class BaseTableView extends PureComponent {
             </View>
         );
     }
-
-    /**
-     * 分割线
-     */
+    /** 分割线 */
     _separator() {
         return <View style={{height: 1, backgroundColor: '#999999'}}/>;
     }
-    /**
-     * 滑动监听
-     */
+    /** 滑动监听*/
     _onScroll = (event) => {
-        let contentSizeH = event.nativeEvent.contentSize.height;
-        let layoutMeasurementH = event.nativeEvent.layoutMeasurement.height;
-        let h = contentSizeH - layoutMeasurementH;
-
-        let contentOffsetY = event.nativeEvent.contentOffset.y;
-
-        if ((contentOffsetY - h) > 50){
-            this.setState({showFoot:'loosenLoad'});
-        } else {
-            this.setState({showFoot:'noLoading'});
-        }
+        // let contentSizeH = event.nativeEvent.contentSize.height;
+        // let layoutMeasurementH = event.nativeEvent.layoutMeasurement.height;
+        // let h = contentSizeH - layoutMeasurementH;
+        //
+        // let contentOffsetY = event.nativeEvent.contentOffset.y;
+        //
+        // if ((contentOffsetY - h) > 50){
+        //     this.setState({showFoot:'loosenLoad'});
+        // } else {
+        //     if(this.state.showFoot !== 'loading') {
+        //         this.setState({showFoot: 'noLoading'});
+        //     }
+        // }
         // console.log("contentOffset滑动结束监听："+ contentOffsetY);
         // console.log("targetContentOffset滑动结束监听："+ h);
     }
