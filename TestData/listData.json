@@ -1,1 +1,132 @@
-{"code":"1","msg":"操作成功","data":[{"creator":"1002000002ITLA12XO06","creatorShowName":"Admin(适途)","lastUpdateDate":"2019-03-25 16:32:28","objectTypeName":"XOT_LIBTOP"},{"creator":"1002000002ITLA12XO06","creatorShowName":"Admin(适途)","lastUpdateDate":"2019-03-25 16:32:28","objectTypeName":"XOT_LIBTOP"},{"creator":"1002000002ITLA12XO06","creatorShowName":"Admin(适途)","lastUpdateDate":"2019-03-25 16:32:28","objectTypeName":"XOT_LIBTOP"},{"creator":"1002000002ITLA12XO06","creatorShowName":"Admin(适途)","lastUpdateDate":"2019-03-25 16:32:28","objectTypeName":"XOT_LIBTOP"},{"creator":"1002000002ITLA12XO06","creatorShowName":"Admin(适途)","lastUpdateDate":"2019-03-25 16:33:04","objectTypeName":"XOT_LIBTOP"},{"creator":"1002000002ITLA12XO06","creatorShowName":"Admin(适途)","lastUpdateDate":"2019-03-25 16:33:19","objectTypeName":"XOT_LIBTOP"},{"creator":"1002000002ITLA12XO06","creatorShowName":"Admin(适途)","lastUpdateDate":"2019-03-25 16:33:33","objectTypeName":"XOT_LIBTOP"},{"creator":"1002001U00JTIEHBYU01","creatorShowName":"aa(aab)","lastUpdateDate":"2019-03-27 09:53:30","objectTypeName":"XOT_LIBTOP"},{"creator":"1002000002ITLA12XO06","creatorShowName":"Admin(适途)","lastUpdateDate":"2019-04-08 14:08:21","objectTypeName":"XOT_LIBTOP"}]}
+{
+  "code": "1",
+  "msg": "操作成功",
+  "data": [
+    {
+      "creator": "1002000002ITLA12XO06",
+      "creatorShowName": "Admin(适途)",
+      "lastUpdateDate": "2019-03-25 16:32:28",
+      "objectTypeName": "XOT_LIBTOP",
+      "objectTypeDisplayName": "文档库顶层节点",
+      "description": null,
+      "parentId": "4006000000RECOAAA102",
+      "objectType": "2005000000IDRECOB24T",
+      "storageName": "虚拟节点",
+      "statusDisplayName": "生效",
+      "children": [
+
+      ],
+      "statusName": "XST_ACTIVE",
+      "name": "00.公司运营",
+      "storageType": "VIRT",
+      "id": "4006000000JTO3F8WH01",
+      "status": "2006000000IDRECOA110",
+      "createDate": "2019-03-25 16:32:28"
+    },
+    {
+      "creator": "1002000002ITLA12XO06",
+      "creatorShowName": "Admin(适途)",
+      "lastUpdateDate": "2019-03-25 16:33:04",
+      "objectTypeName": "XOT_LIBTOP",
+      "objectTypeDisplayName": "文档库顶层节点",
+      "description": null,
+      "parentId": "4006000000RECOAAA102",
+      "objectType": "2005000000IDRECOB24T",
+      "storageName": "虚拟节点",
+      "statusDisplayName": "生效",
+      "children": [
+
+      ],
+      "statusName": "XST_ACTIVE",
+      "name": "20.PLM业务运营",
+      "storageType": "VIRT",
+      "id": "4006000000JTO3G0JI01",
+      "status": "2006000000IDRECOA110",
+      "createDate": "2019-03-25 16:33:04"
+    },
+    {
+      "creator": "1002000002ITLA12XO06",
+      "creatorShowName": "Admin(适途)",
+      "lastUpdateDate": "2019-03-25 16:33:19",
+      "objectTypeName": "XOT_LIBTOP",
+      "objectTypeDisplayName": "文档库顶层节点",
+      "description": null,
+      "parentId": "4006000000RECOAAA102",
+      "objectType": "2005000000IDRECOB24T",
+      "storageName": "虚拟节点",
+      "statusDisplayName": "生效",
+      "children": [
+
+      ],
+      "statusName": "XST_ACTIVE",
+      "name": "21.PLM-TC功能模块库",
+      "storageType": "VIRT",
+      "id": "4006000000JTO3GC4601",
+      "status": "2006000000IDRECOA110",
+      "createDate": "2019-03-25 16:33:19"
+    },
+    {
+      "creator": "1002000002ITLA12XO06",
+      "creatorShowName": "Admin(适途)",
+      "lastUpdateDate": "2019-03-25 16:33:33",
+      "objectTypeName": "XOT_LIBTOP",
+      "objectTypeDisplayName": "文档库顶层节点",
+      "description": null,
+      "parentId": "4006000000RECOAAA102",
+      "objectType": "2005000000IDRECOB24T",
+      "storageName": "虚拟节点",
+      "statusDisplayName": "生效",
+      "children": [
+
+      ],
+      "statusName": "XST_ACTIVE",
+      "name": "22.PLM-技术交流/经验分享知识库",
+      "storageType": "VIRT",
+      "id": "4006000000JTO3GMIT01",
+      "status": "2006000000IDRECOA110",
+      "createDate": "2019-03-25 16:33:33"
+    },
+    {
+      "creator": "1002001U00JTIEHBYU01",
+      "creatorShowName": "aa(aab)",
+      "lastUpdateDate": "2019-03-27 09:53:30",
+      "objectTypeName": "XOT_LIBTOP",
+      "objectTypeDisplayName": "文档库顶层节点",
+      "description": "b",
+      "parentId": "4006000000RECOAAA102",
+      "objectType": "2005000000IDRECOB24T",
+      "storageName": "虚拟节点",
+      "statusDisplayName": "生效",
+      "children": [
+
+      ],
+      "statusName": "XST_ACTIVE",
+      "name": "a",
+      "storageType": "VIRT",
+      "id": "4006000000JTQK1THH01",
+      "status": "2006000000IDRECOA110",
+      "createDate": "2019-03-27 09:53:30"
+    },
+    {
+      "creator": "1002000002ITLA12XO06",
+      "creatorShowName": "Admin(适途)",
+      "lastUpdateDate": "2019-04-08 14:08:21",
+      "objectTypeName": "XOT_LIBTOP",
+      "objectTypeDisplayName": "文档库顶层节点",
+      "description": null,
+      "parentId": "4006000000RECOAAA102",
+      "objectType": "2005000000IDRECOB24T",
+      "storageName": "虚拟节点",
+      "statusDisplayName": "生效",
+      "children": [
+
+      ],
+      "statusName": "XST_ACTIVE",
+      "name": "1111",
+      "storageType": "VIRT",
+      "id": "4006000000JU7YFBK901",
+      "status": "2006000000IDRECOA110",
+      "createDate": "2019-04-08 14:08:21"
+    }
+  ]
+}
