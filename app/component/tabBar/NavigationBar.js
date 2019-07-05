@@ -7,6 +7,7 @@ import {
     Platform,
     TouchableOpacity
 } from 'react-native';
+import commonStyle from "../../css/commonStyle";
 
 class NavigationBar extends Component {
     constructor(props) {
@@ -14,6 +15,8 @@ class NavigationBar extends Component {
     }
 
     render() {
+
+        
         // leftTitle和leftImage 优先判断leftTitle (即 文本按钮和图片按钮优先显示文本按钮)
         const { title, leftTitle, leftImage, leftAction, rightTitle, rightImage, rightAction } = this.props;
         return (
@@ -24,7 +27,7 @@ class NavigationBar extends Component {
                             ?
                             <TouchableOpacity style={styles.leftNav} onPress={ ()=>{leftAction()} }>
                                 <View style={{alignItems: 'center'}}>
-                                    <Text style={styles.barButton}>{leftTitle}</Text>
+                                    <Text style={styles.barLeftButton}>{leftTitle}</Text>
                                 </View>
                             </TouchableOpacity>
                             :
@@ -48,7 +51,7 @@ class NavigationBar extends Component {
                         rightTitle ?
                             <TouchableOpacity style={styles.rightNav} onPress={ ()=>{rightAction()} }>
                                 <View style={{alignItems: 'center'}}>
-                                    <Text style={styles.barButton}>{rightTitle}</Text>
+                                    <Text style={styles.barRightButton}>{rightTitle}</Text>
                                 </View>
                             </TouchableOpacity>
                             : (rightImage ?
@@ -62,15 +65,20 @@ class NavigationBar extends Component {
                     }
 
                 </View>
+                <View style={styles.lineView}/>
             </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
+    lineView: {
+        height: 0.5,
+        backgroundColor: commonStyle.navLineColor,
+    },
     barView: {
         height: Platform.OS === 'android' ? 44 : 64,
-        backgroundColor: '#4E78E7',
+        backgroundColor: commonStyle.navThemeColor,
     },
     showView: {
         flex: 1,
@@ -81,7 +89,7 @@ const styles = StyleSheet.create({
         height: 44,
     },
     title: {
-        color: 'white',
+        color: commonStyle.navTitleColor,
         fontSize: 18.0,
     },
     leftNav: {
@@ -98,8 +106,12 @@ const styles = StyleSheet.create({
         bottom: 8,
         justifyContent: 'center',
     },
-    barButton: {
-        color: 'white',
+    barLeftButton: {
+        color: commonStyle.navLeftTitleColor,
+        fontSize: 18
+    },
+    barRightButton: {
+        color: commonStyle.navRightTitleColor,
         fontSize: 18
     },
 })
