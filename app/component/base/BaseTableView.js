@@ -64,7 +64,6 @@ export default class BaseTableView extends PureComponent {
                 data: data
             });
         }
-
     }
 
 

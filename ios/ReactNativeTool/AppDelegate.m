@@ -32,6 +32,9 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  
+  NSString *homePath = NSHomeDirectory();
+  NSLog(@"home根目录:%@", homePath);
   return YES;
 }
 

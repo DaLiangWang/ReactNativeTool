@@ -1,7 +1,6 @@
 import Storage from 'react-native-storage';
 import AsyncStorage from '@react-native-community/async-storage';
 import sync from './sync';
-// import storageTools from './storageTools';
 
 const storageManager = new Storage({
   // 最大容量，默认值1000条数据循环存储
@@ -89,7 +88,22 @@ const storageTools = {
         resolve(null);
       }
     });
-  }
+  },
+//   // 获取某个key下的所有id(仅key-id数据)
+// storage.getIdsForKey('user').then(ids => {
+//   console.log(ids);
+// });
+
+// // 获取某个key下的所有数据(仅key-id数据)
+// storage.getAllDataForKey('user').then(users => {
+//   console.log(users);
+// });
+
+// // !! 清除某个key下的所有数据(仅key-id数据)
+// storage.clearMapForKey('user');
+
+// // !! 清空map，移除所有"key-id"数据（但会保留只有key的数据）
+// storage.clearMap();
 };
 
 

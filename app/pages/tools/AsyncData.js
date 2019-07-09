@@ -4,9 +4,7 @@ import BaseView from '../../component/base/BaseView';
 import commonStyle from '../../css/commonStyle';
 
 export default class AsyncData extends BaseView {
-    state = {
-        language: null,
-    }
+   
     constructor(props) {
         super(props);
         this.navigationBar.title = "Async本地数据";
@@ -23,28 +21,31 @@ export default class AsyncData extends BaseView {
         console.log(data);
     }
     clickSave(item) {
-        console.log(item);
         const data = {
             from: 'some other site',
             userid: 'some userid',
             token: 'some token',
         };
         storage.save('loginState', data, 5000);
+        storage.saveId('loginState',"sss", {"sd":"dd"}, 5000);
+        storage.saveId('loginState',"kkk", {"sd":"dd"}, 5000);
+        console.log(item);
     }
     clickRemove(item) {
-        console.log(item);
         storage.remove('loginState');
+        console.log(item);
+
     }
 
     renderContent() {
         return (
             <View>
-                <TouchableOpacity activeOpacity={1} onPress={() => this.clickSave("d")}>
+                <TouchableOpacity activeOpacity={1} onPress={() => this.clickSave("保存")}>
                     <View style={{ backgroundColor: commonStyle.orange, height: 44 }}>
                         <Text>保存数据</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity activeOpacity={1} onPress={() => this.clickRemove("d")}>
+                <TouchableOpacity activeOpacity={1} onPress={() => this.clickRemove("删除")}>
                     <View style={{ backgroundColor: commonStyle.orange, height: 44 }} >
                         <Text>删除数据</Text>
                     </View>

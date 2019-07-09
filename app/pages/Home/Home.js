@@ -17,7 +17,12 @@ export default class Home extends BaseView {
         {
             title: "本地数据存储",
             view: "AsyncData"
-        }
+        },
+        {
+            title: "文件缓存",
+            view: "FileCache"
+        },
+        
     ]
     constructor(props) {
         super(props);

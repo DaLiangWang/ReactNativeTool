@@ -6,6 +6,7 @@ import TabBar from '../component/tabBar/TabBar';
 import Touch from '../pages/tools/Touch';
 import Com from '../pages/tools/Com';
 import AsyncData from '../pages/tools/AsyncData'
+import FileCache from '../pages/tools/FileCache';
 
 const navigator = createStackNavigator({
         TabBar:{
@@ -30,6 +31,9 @@ const navigator = createStackNavigator({
         },
         AsyncData:{
             screen:AsyncData,
+        },
+        FileCache:{
+            screen:FileCache,
         }
         
     });
