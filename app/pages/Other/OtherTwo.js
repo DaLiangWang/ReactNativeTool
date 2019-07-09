@@ -1,7 +1,7 @@
 //LoginScreen.js
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-import BaseView from '../../common/base/BaseView';
+import BaseView from '../../component/base/BaseView';
 
 export default class OtherTwo extends BaseView{
     constructor(props) {

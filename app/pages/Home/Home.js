@@ -1,102 +1,60 @@
 import React, { Component } from 'react';
-import { Text, View,Navigator,FlatList ,TouchableOpacity} from 'react-native';
-import BaseView from '../../common/base/BaseView';
+import { Text, View, Navigator, FlatList, TouchableOpacity, Button } from 'react-native';
+import BaseView from '../../component/base/BaseView';
+import BaseTableView from "../../component/base/BaseTableView";
+import commonStyle from '../../css/commonStyle';
 
 export default class Home extends BaseView {
-    state = {
-        selected: '',
-        refreshing:false
-    };
-
-    dataFrom = {
-        data:[
-            {
-                id:"1",
-                title:"11111",
-            },
-            {
-                id:"2",
-                title:"2",
-            },
-            {
-                id:"3",
-                title:"3",
-            },
-        ]
-    }
-
+    data = [
+        {
+            title: "手势响应",
+            view: "Touch"
+        },
+        {
+            title: "组件",
+            view: "Com"
+        },
+        {
+            title: "本地数据存储",
+            view: "AsyncData"
+        }
+    ]
     constructor(props) {
         super(props);
-        this.navigationBar.title = "首页";
-        this.navigationBar.leftTitle = "取消加载";
-        this.navigationBar.rightTitle = "开始加载";
+        this.navigationBar.title = "home";
+    }
+    clickItem(item) {
+        console.log(item);
+        const { navigation } = this.props;
+        navigation.navigate(item.view);
+    }
+    renderView(item) {
+        return (
+            <TouchableOpacity activeOpacity={1} onPress={() => this.clickItem(item)}>
+                <View style={{ backgroundColor: commonStyle.orange, height: 44 }}>
+                    <Text>{item.title}</Text>
+                </View>
+            </TouchableOpacity>
+        )
     }
 
-    leftAction(){
-        this.setState({refreshing: false});
-    }
-    rightAction(){
-        this.setState({refreshing: true});
-    }
-
-
-
-    _keyExtractor = (item, index) => item.id;
-
-    _onPressItem = (id) => {
-        this.setState({selected:id});
-    };
-
-    _renderItem = ({item}) => (
-        <MyListItem
-            id={item.id}
-            onPressItem={this._onPressItem}
-            selected={this.state.selected}
-            title={item.title}
-        />
-    );
-
-    _onRefresh = () => {
-        this.setState({refreshing: true});
-
-        this.timer = setTimeout(() => {
-            this.setState({refreshing: false});
-            this.timer && clearTimeout(this.timer);
-        }, 1500);
+    dataFrom(data) {
+        console.log(data);
+        return data.map((item, index) => {
+            item.title = item.title + index;
+            return item;
+        });
     }
 
     renderContent() {
-        const {data} = this.dataFrom;
         return (
-            <View style={{flex: 1}}>
-                <FlatList
-                    data={data}
-                    extraData={this.state}
-                    keyExtractor={this._keyExtractor}
-                    renderItem={this._renderItem}
-                    onRefresh={this._onRefresh}
-                    refreshing={this.state.refreshing}
-                />
-            </View>
-        );
-    }
-}
-
-class MyListItem extends React.PureComponent {
-    _onPress = () => {
-        this.props.onPressItem(this.props.id);
-    };
-
-    render() {
-        const textColor = (this.props.selected === this.props.id) ? "red" : "yellow";
-        return (
-            <TouchableOpacity onPress={this._onPress}>
-                <View>
-                    <Text style={{ color: 'black', backgroundColor: textColor}}>
-                        {this.props.title}
-                    </Text>
-                </View>
-            </TouchableOpacity>
+            <BaseTableView
+                data={this.data}
+                renderView={this.renderView.bind(this)}
+                dataFrom={this.dataFrom.bind(this)}
+                // isOpenItemLayout = {true}
+                {...this.props}
+            />
         );
     }
 }

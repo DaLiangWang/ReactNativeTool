@@ -1,7 +1,7 @@
 //RooterNavigator
 import {createAppContainer,createStackNavigator,createSwitchNavigator} from 'react-navigation';
-import OtherOne from '../pages/Other/OtherOne';
-import OtherTwo from "../pages/Other/OtherTwo";
+import OtherOne from '../pages/other/OtherOne';
+import OtherTwo from "../pages/other/OtherTwo";
 
 
 const navigatorss = createStackNavigator({

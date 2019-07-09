@@ -43,9 +43,9 @@ export const commonStyle = {
     // 导航title 颜色
     navTitleColor: '#262626',
     // 导航左item title color
-    navLeftTitleColor: '#333',
+    navLeftTitleColor: '#262626',
     // 导航右item title color
-    navRightTitleColor: '#333',
+    navRightTitleColor: '#262626',
     // 导航栏背景颜色
     navThemeColor: '#FEFEFE',
     // 导航栏分割线颜色
