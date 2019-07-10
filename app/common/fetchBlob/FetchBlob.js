@@ -6,6 +6,7 @@
  *
  */
 import RNFS from 'react-native-fs';
+import Util from "../../util/Util";
 
 
 /** @namespace RNFS.ExternalDirectoryPath */
@@ -26,6 +27,7 @@ const CachesDirectoryPath = RNFS.CachesDirectoryPath;
 const Path = {
   async Caches(targetName) {
     const toLoadPath = `${RNFS.CachesDirectoryPath}/File`;
+    // const toLoadPath = Util.isAndroid() ? ExternalDirectoryPath : CachesDirectoryPath;
     const isFileExBol = await isFileEx(toLoadPath);
     if (!isFileExBol) {
       await mkdir(CachesDirectoryPath, 'File');
@@ -37,35 +39,47 @@ const Path = {
   }
 };
 
-
 /** 文件下载(图片、文件、音频、视频) */
 export const downloadFile = async (formUrl, targetName, progress, suc, fail) => {
+  console.log("下载文件路径 : " + formUrl);
   // 获取下载文件本地保存路径
-  const toLoadPath = await Path.Caches(targetName);
+  let toLoadPath = await Path.Caches(targetName);
+  // toLoadPath = '/sdcard/Android/data/com.reactnativetool/cache/image.jpeg';
+  // toLoadPath = Util.isAndroid()?("file:/" + toLoadPath):toLoadPath;
   console.log("downloadFile 保存文件路径 : " + toLoadPath);
 
+  console.log("检查本地缓存：" + toLoadPath);
   const isFileExBol = await isFileEx(toLoadPath);
+  console.log("本地缓存结果：" + (isFileExBol?"有缓存":"没有缓存"));
   if (isFileExBol) {
+    // toLoadPath = Util.isAndroid() ? ("file://" + toLoadPath) : toLoadPath;
     console.log("读取缓存 : " + toLoadPath);
     suc(toLoadPath, null);
   } else {
-    RNFS.downloadFile({
-      fromUrl: formUrl,
-      toFile: toLoadPath,
-      progressDivider: 10,
-      begin: (begin) => {
-        console.log('begin = ', begin)
-      },
-      progress: (pro) => {
-        progress(pro);
-      }
+  console.log("准备开始下载");
+  RNFS.downloadFile({
+    fromUrl: formUrl,
+    toFile: toLoadPath,
+    progressDivider: 1,
+    begin: (begin) => {
+      console.log('开始下载 ： ', begin)
+    },
+    progress: (res) => {
+      let pro = res.bytesWritten / res.contentLength;
+      console.log('下载进度 ： ', pro)
+      progress(pro);
+    }
+  })
+    .promise.then((res) => {
+      // toLoadPath = Util.isAndroid() ? ("file:/" + toLoadPath) : toLoadPath;
+      console.log('下载成功-图片路径 = ', toLoadPath);
+      console.log('下载成功-结果 = ', res);
+      suc(toLoadPath, res);
     })
-      .promise.then((res) => {
-        suc(toLoadPath, res);
-      })
-      .catch((e) => {
-        fail(e)
-      });
+    .catch((e) => {
+      console.log('下载失败 = ', e)
+      fail(e)
+    });
   }
 };
 

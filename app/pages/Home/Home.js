@@ -6,20 +6,20 @@ import commonStyle from '../../css/commonStyle';
 
 export default class Home extends BaseView {
     data = [
-        {
-            title: "手势响应",
-            view: "Touch"
-        },
-        {
-            title: "组件",
-            view: "Com"
-        },
+        // {
+        //     title: "手势响应",
+        //     view: "Touch"
+        // },
+        // {
+        //     title: "组件",
+        //     view: "Com"
+        // },
         {
             title: "本地数据存储",
             view: "AsyncData"
         },
         {
-            title: "文件缓存",
+            title: "文件缓存,图片显示组件",
             view: "FileCache"
         },
         
@@ -46,7 +46,7 @@ export default class Home extends BaseView {
     dataFrom(data) {
         console.log(data);
         return data.map((item, index) => {
-            item.title = item.title + index;
+            item.title = item.title + '-' + 'test';
             return item;
         });
     }

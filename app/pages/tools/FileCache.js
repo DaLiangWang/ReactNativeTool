@@ -24,20 +24,20 @@ export default class FileCache extends BaseView {
     }
 
     clickSave(item) {
-        downloadFile(item, 'image.png', (progress) => {
-            console.log('下载进度 = ', progress)
-        }, (path, data) => {
-            console.log('下载成功 = ', path, data)
-        }, (e) => {
-            console.log('下载失败 = ', e)
-        });
+        // downloadFile(item, 'image.png', (progress) => {
+        //     console.log('下载进度 = ', progress)
+        // }, (path, data) => {
+        //     console.log('下载成功 = ', path, data)
+        // }, (e) => {
+        //     console.log('下载失败 = ', e)
+        // });
     }
     clickRemove(item) {
 
     }
 
     renderContent() {
-        let imageUrl = 'http://image.baidu.com/search/down?tn=download&ipn=dwnl&word=download&ie=utf8&fr=result&url=http%3A%2F%2Fpic37.nipic.com%2F20140113%2F8800276_184927469000_2.png&thumburl=http%3A%2F%2Fimg5.imgtn.bdimg.com%2Fit%2Fu%3D3300305952%2C1328708913%26fm%3D26%26gp%3D0.jpg';
+        let imageUrl = 'https://raw.githubusercontent.com/DaLiangWang/ReactNativeTool/dev/testImage.jpeg';
         return (
             <View>
                 <TouchableOpacity activeOpacity={1} onPress={() => this.clickSave(imageUrl)}>
@@ -51,7 +51,7 @@ export default class FileCache extends BaseView {
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity activeOpacity={1} onPress={() => this.clickRemove("删除")}>
-                    <View style={{ backgroundColor: commonStyle.purple, height: 88 }} >
+                    <View style={{ backgroundColor: commonStyle.purple, height: 200, width: 200 }} >
                         <BaseImage url={imageUrl}></BaseImage>
                     </View>
                 </TouchableOpacity>

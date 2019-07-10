@@ -136,7 +136,12 @@ android {
         }
     }
 }
-
+//configurations.all {
+//    resolutionStrategy {
+//// 添加依赖
+//        force'com.squareup.okhttp3:okhttp:3.4.1'
+//    }
+//}
 dependencies {
     implementation project(':react-native-fs')
     implementation project(':rn-fetch-blob')

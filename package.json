@@ -17,8 +17,7 @@
     "react-native-spring-scrollview": "^2.0.22",
     "react-native-storage": "^1.0.1",
     "react-native-tab-navigator": "^0.3.4",
-    "react-navigation": "^3.11.0",
-    "rn-fetch-blob": "^0.10.15"
+    "react-navigation": "^3.11.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
