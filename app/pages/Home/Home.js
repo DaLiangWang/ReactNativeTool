@@ -10,10 +10,10 @@ export default class Home extends BaseView {
         //     title: "手势响应",
         //     view: "Touch"
         // },
-        // {
-        //     title: "组件",
-        //     view: "Com"
-        // },
+        {
+            title: "组件",
+            view: "Com"
+        },
         {
             title: "本地数据存储",
             view: "AsyncData"
@@ -22,7 +22,11 @@ export default class Home extends BaseView {
             title: "文件缓存,图片显示组件",
             view: "FileCache"
         },
-        
+        // {
+        //     title: "Picker选择器",
+        //     view: "PickerView"
+        // },
+
     ]
     constructor(props) {
         super(props);
@@ -34,6 +38,8 @@ export default class Home extends BaseView {
         navigation.navigate(item.view);
     }
     renderView(item) {
+        console.log("绘制cell" + item);
+
         return (
             <TouchableOpacity activeOpacity={1} onPress={() => this.clickItem(item)}>
                 <View style={{ backgroundColor: commonStyle.orange, height: 44 }}>
@@ -46,7 +52,7 @@ export default class Home extends BaseView {
     dataFrom(data) {
         console.log(data);
         return data.map((item, index) => {
-            item.title = item.title + '-' + 'test';
+            // item.title = item.title + '-' + 'test';
             return item;
         });
     }

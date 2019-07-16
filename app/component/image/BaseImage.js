@@ -61,11 +61,6 @@ export default class BaseImage extends Component {
         const { loadType, loadPath, loadProgress } = this.state;
         const { url } = this.props;
 
-        // let icon =  require(loadPath); 
-
-        // const orderImage = Image.resolveAssetSource(require(loadPath));
-        // console.info(orderImage);
-
         switch (loadType) {
             case 'default':
                 return (
@@ -82,18 +77,11 @@ export default class BaseImage extends Component {
             case 'success':
             case 'android':
                 return (
-                    // Util.isIOS() ?
                     <Image
                         source={{ url: loadPath }}
                         resizeMode={'contain'}
                         style={{ width: 200, height: 200 }}
                     />
-                    // :
-                    // <Image
-                    //     source={{ url: 'file://' + loadPath }}
-                    //     resizeMode={'contain'}
-                    //     style={{ width: 200, height: 200 }}
-                    // />
                 );
             case 'netError':
             case 'timeOut':

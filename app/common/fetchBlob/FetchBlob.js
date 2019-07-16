@@ -19,13 +19,13 @@ const CachesDirectoryPath = RNFS.CachesDirectoryPath;
 
 const Path = {
   async Caches(targetName) {
-    const toLoadPath = `${RNFS.CachesDirectoryPath}`;
-    // const toLoadPath = Util.isAndroid() ? ExternalDirectoryPath : CachesDirectoryPath;
-    // const isFileExBol = await isFileEx(toLoadPath);
-    // if (!isFileExBol) {
-    //   await mkdir(CachesDirectoryPath, 'File');
-    //   console.log("创建文件夹 : " + toLoadPath);
-    // }
+    // const toLoadPath = `${RNFS.CachesDirectoryPath}`;
+    const toLoadPath = Util.isAndroid() ? ExternalDirectoryPath : CachesDirectoryPath;
+    const isFileExBol = await isFileEx(toLoadPath);
+    if (!isFileExBol) {
+      await mkdir(CachesDirectoryPath, 'File');
+      console.log("创建文件夹 : " + toLoadPath);
+    }
     const indexFile = `${toLoadPath}/${targetName}`;
     console.log("路径 : " + indexFile);
     return indexFile;
@@ -41,39 +41,38 @@ export const downloadFile = async (formUrl, targetName, progress, suc, fail) => 
 
   console.log("检查本地缓存：" + toLoadPath);
   const isFileExBol = await isFileEx(toLoadPath);
-  console.log("本地缓存结果：" + (isFileExBol?"有缓存":"没有缓存"));
+  console.log("本地缓存结果：" + (isFileExBol ? "有缓存" : "没有缓存"));
   if (isFileExBol) {
     toLoadPath = Util.isAndroid() ? ("file://" + toLoadPath) : toLoadPath;
     console.log("读取缓存 : " + toLoadPath);
     suc(toLoadPath, null);
   } else {
-  console.log("准备开始下载");
-  RNFS.downloadFile({
-    fromUrl: formUrl,
-    toFile: toLoadPath,
-    progressDivider: 1,
-    begin: (begin) => {
-      console.log('开始下载 ： ', begin)
-    },
-    progress: (res) => {
-      let pro = res.bytesWritten / res.contentLength;
-      console.log('下载进度 ： ', pro)
-      progress(pro);
-    }
-  })
-    .promise.then((res) => {
-      toLoadPath = Util.isAndroid() ? ("file://" + toLoadPath) : toLoadPath;
-      console.log('下载成功-图片路径 = ', toLoadPath);
-      console.log('下载成功-结果 = ', res);
-      suc(toLoadPath, res);
+    console.log("准备开始下载");
+    RNFS.downloadFile({
+      fromUrl: formUrl,
+      toFile: toLoadPath,
+      progressDivider: 1,
+      begin: (begin) => {
+        console.log('开始下载 ： ', begin)
+      },
+      progress: (res) => {
+        let pro = res.bytesWritten / res.contentLength;
+        console.log('下载进度 ： ', pro)
+        progress(pro);
+      }
     })
-    .catch((e) => {
-      console.log('下载失败 = ', e)
-      fail(e)
-    });
+      .promise.then((res) => {
+        toLoadPath = Util.isAndroid() ? ("file://" + toLoadPath) : toLoadPath;
+        console.log('下载成功-图片路径 = ', toLoadPath);
+        console.log('下载成功-结果 = ', res);
+        suc(toLoadPath, res);
+      })
+      .catch((e) => {
+        console.log('下载失败 = ', e)
+        fail(e)
+      });
   }
 };
-
 
 /**  删除本地文件 */
 export const deleteFile = (targetName, callback) => {
