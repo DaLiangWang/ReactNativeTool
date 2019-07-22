@@ -16,9 +16,11 @@ export const commonStyle = {
     lightGray: '#D3D3D3',
     tomato: '#FF6347',
     PeachPuff: '#FFDAB9',
+    transparentGray: '#00000021',
+
     clear: 'transparent',
 
-    
+
     /** 主题色 **/
     themeColor: '#e74c3c',
     // 默认灰色字体颜色
@@ -50,7 +52,7 @@ export const commonStyle = {
     navThemeColor: '#FEFEFE',
     // 导航栏分割线颜色
     navLineColor: '#E6E6E6',
-    
+
 }
 module.exports = commonStyle;
 

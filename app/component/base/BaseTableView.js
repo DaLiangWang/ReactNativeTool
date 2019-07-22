@@ -8,6 +8,8 @@ import Util from "../../util/Util";
     url,
     // 请求参数 
     params,
+    // 视图方向
+    horizontal,
     // 外部传入数据 
     data,
     // 是否打开上下拉刷新 
@@ -92,10 +94,10 @@ export default class BaseTableView extends PureComponent {
     /** 行高自定义 */
     _getItemLayout(data, index) {
         if (typeof (this.props.getItemLayout) === 'function') {
-            return this.props.getItemLayout(data[index],index);
+            return this.props.getItemLayout(data[index], index);
         } else {
             console.log("请实现getItemLayout方法");
-            return {length: 50, offset: 50 * index, index};
+            return { length: 50, offset: 50 * index, index };
         }
     }
 
@@ -183,7 +185,7 @@ export default class BaseTableView extends PureComponent {
         NetUtil.http(url, params, 'GET', response => {
             this.timer = setTimeout(() => {
 
-                this.setState({ showFoot: response.data.length?'noLoading':'noMoreData', data: this.state.data.concat(response.data) });
+                this.setState({ showFoot: response.data.length ? 'noLoading' : 'noMoreData', data: this.state.data.concat(response.data) });
 
             }, 1500);
         })
@@ -215,7 +217,7 @@ export default class BaseTableView extends PureComponent {
     }
 
     render() {
-        const { isOpenRefreshing, isOpenItemLayout } = this.props
+        const { isOpenRefreshing, isOpenItemLayout, horizontal } = this.props
         const { data, refreshing } = this.state;
 
         return (
@@ -226,6 +228,12 @@ export default class BaseTableView extends PureComponent {
                         data={this._dataFrom(data)}
                         //额外数据
                         extraData={this.state}
+                        //视图方向
+                        horizontal={horizontal}
+                        //隐藏水平
+                        showsHorizontalScrollIndicator={false}
+                        //隐藏垂直
+                        showsVerticalScrollIndicator={false}
                         //item标识
                         keyExtractor={this._extraUniqueKey}
                         //item显示的布局
@@ -248,6 +256,7 @@ export default class BaseTableView extends PureComponent {
                         onScrollEndDrag={this._onScrollEndDrag}
                         //自定义行高
                         getItemLayout={isOpenItemLayout ? this._getItemLayout.bind(this) : null}
+                        {...this.props}
                     />
                 }
             </View>

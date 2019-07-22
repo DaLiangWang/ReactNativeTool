@@ -7,6 +7,7 @@ import Touch from '../pages/tools/Touch';
 import Com from '../pages/tools/Com';
 import AsyncData from '../pages/tools/AsyncData'
 import FileCache from '../pages/tools/FileCache';
+import SeleteView from '../pages/home/SeleteView';
 
 const navigator = createStackNavigator({
     TabBar: {
@@ -34,6 +35,9 @@ const navigator = createStackNavigator({
     },
     FileCache: {
         screen: FileCache,
+    },
+    SeleteView: {
+        screen: SeleteView,
     },
 
 

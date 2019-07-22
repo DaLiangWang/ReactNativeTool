@@ -22,6 +22,10 @@ export default class Home extends BaseView {
             title: "文件缓存,图片显示组件",
             view: "FileCache"
         },
+        {
+            title: "选择视图",
+            view: "SeleteView"
+        },
         // {
         //     title: "Picker选择器",
         //     view: "PickerView"
