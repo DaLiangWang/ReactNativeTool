@@ -6,7 +6,7 @@ import commonStyle from '../../css/commonStyle';
 import BaseTableView from "../../component/base/BaseTableView";
 
 
-const nativeHeight = 5;//工具栏高度百分比
+const nativeHeight = 6;//工具栏高度百分比
 const nativeItemSpacing = 1;//工具栏item间距
 const nativeItemMinWidth = 80;//工具栏item最小宽度
 
@@ -66,7 +66,7 @@ export default class SeleteView extends BaseView {
     renderShowView(item) {
         return <Text style={{
             backgroundColor: commonStyle.blue,
-        }}>{item.key}</Text>
+        }}>{item.key}但是克己奉公 i 圣诞节刚开始的几个款式都不给老板的时光</Text>
 
     }
     getTabData() {
