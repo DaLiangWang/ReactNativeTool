@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Text, View, Navigator, FlatList, TouchableOpacity, Button } from 'react-native';
-import BaseView from '../../component/base/BaseView';
-import BaseTableView from "../../component/base/BaseTableView";
-import commonStyle from '../../css/commonStyle';
+import BaseView from '../../AHProject/component/base/BaseView';
+import BaseTableView from "../../AHProject/component/view/BaseTableView";
+import commonStyle from '../../AHProject/css/commonStyle';
 
 export default class Home extends BaseView {
     data = [
@@ -24,7 +24,7 @@ export default class Home extends BaseView {
         },
         {
             title: "选择视图",
-            view: "SeleteView"
+            view: "SelectView"
         },
         // {
         //     title: "Picker选择器",

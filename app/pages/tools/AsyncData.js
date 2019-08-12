@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, Navigator, FlatList, TouchableOpacity, Button, Picker } from 'react-native';
-import BaseView from '../../component/base/BaseView';
-import commonStyle from '../../css/commonStyle';
+import BaseView from '../../AHProject/component/base/BaseView';
+import commonStyle from '../../AHProject/css/commonStyle';
 
 export default class AsyncData extends BaseView {
    

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {Image, Text, View,Button,Alert} from 'react-native';
-import BaseView from '../../component/base/BaseView';
-import BaseTableView from "../../component/base/BaseTableView";
-import commonStyle from '../../css/commonStyle';
+import BaseView from '../../AHProject/component/base/BaseView';
+import BaseTableView from "../../AHProject/component/view/BaseTableView";
+import commonStyle from '../../AHProject/css/commonStyle';
 
 export default class Table extends BaseView {
     constructor(props) {

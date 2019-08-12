@@ -1,13 +1,14 @@
 //RooterNavigator
 import { createAppContainer, createStackNavigator, createSwitchNavigator } from 'react-navigation';
-import Home from '../pages/home/Home';
+// import home from '../pages/home/home';
 import table from '../pages/table/Table';
-import TabBar from '../component/tabBar/TabBar';
+import TabBar from '../AHProject/component/tabBar/TabBar';
 import Touch from '../pages/tools/Touch';
 import Com from '../pages/tools/Com';
 import AsyncData from '../pages/tools/AsyncData'
 import FileCache from '../pages/tools/FileCache';
-import SeleteView from '../pages/home/SeleteView';
+import Home from "../pages/home/Home";
+import SelectView from "../pages/table/SelectView";
 
 const navigator = createStackNavigator({
     TabBar: {
@@ -15,11 +16,11 @@ const navigator = createStackNavigator({
     },
     Home: {
         screen: Home,
-        navigationOptions: {
-            // title: 'Home',
-            // gesturesEnabled: false,
-            // tabBarVisible: true,
-        }
+        // navigationOptions: {
+        //     // title: 'home',
+        //     // gesturesEnabled: false,
+        //     // tabBarVisible: true,
+        // }
     },
     table: {
         screen: table,
@@ -36,8 +37,8 @@ const navigator = createStackNavigator({
     FileCache: {
         screen: FileCache,
     },
-    SeleteView: {
-        screen: SeleteView,
+    SelectView: {
+        screen: SelectView,
     },
 
 

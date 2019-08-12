@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View ,Navigator} from 'react-native';
 import Navigation from './router/Rooter';
-import storage from './common/storage/storage';
+import storage from './AHProject/common/storage/storage';
 // import storageTools from './common/storage/storageTools';
 
 

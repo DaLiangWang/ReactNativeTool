@@ -1,4 +1,4 @@
-import { Platform } from 'react-native'
+
 export const commonStyle = {
     /** color **/
     // 常用颜色
@@ -16,9 +16,16 @@ export const commonStyle = {
     lightGray: '#D3D3D3',
     tomato: '#FF6347',
     PeachPuff: '#FFDAB9',
-    transparentGray: '#00000021',
-
     clear: 'transparent',
+    blockClear_10: '#0000001A',
+    blockClear_20: '#00000033',
+    blockClear_30: '#0000004D',
+    blockClear_40: '#00000066',
+    blockClear_50: '#00000080',
+    blockClear_60: '#00000099',
+    blockClear_70: '#000000B3',
+    blockClear_80: '#000000CC',
+    blockClear_90: '#000000E6',
 
 
     /** 主题色 **/
@@ -28,13 +35,13 @@ export const commonStyle = {
     // 默认黑色字体颜色
     textBlockColor: '#262626',
     // 默认背景颜色
-    bgColor: '#E6E6E6',
+    bgColor: '#E5E5E5',
     // 默认分割线颜色
     lineColor: '#E6E6E6',
     // 默认placeholder颜色
     placeholderColor: '#eee',
     // 边框线颜色
-    borderColor: '#808080',
+    borderColor: '#f0f0f0',
     // icon灰色
     iconGray: '#989898',
     // icon黑色

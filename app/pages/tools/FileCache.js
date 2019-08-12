@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Text, View, Navigator, FlatList, TouchableOpacity, Button, Picker } from 'react-native';
-import BaseView from '../../component/base/BaseView';
-import { mkdir, downloadFile } from '../../common/fetchBlob/FetchBlob';
-import commonStyle from '../../css/commonStyle';
-import BaseImage from '../../component/image/BaseImage';
+import BaseView from '../../AHProject/component/base/BaseView';
+import { mkdir, downloadFile } from '../../AHProject/common/fetchBlob/FetchBlob';
+import commonStyle from '../../AHProject/css/commonStyle';
+import BaseImage from '../../AHProject/component/view/BaseImage';
 
 export default class FileCache extends BaseView {
 

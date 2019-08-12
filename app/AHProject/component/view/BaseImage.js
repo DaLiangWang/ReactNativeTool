@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Image, alert } from 'react-native';
-import NavigationBar from '../tabBar/NavigationBar'
+import { Text, StyleSheet, Image, alert } from 'react-native';
 import PropTypes from 'prop-types';
 import { downloadFile, downloadFileS } from '../../common/fetchBlob/FetchBlob';
-import Util from '../../util/Util';
 
 export default class BaseImage extends Component {
     props = {

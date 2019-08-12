@@ -1,5 +1,5 @@
 import React, { Component, PureComponent } from 'react';
-import { Text, View, FlatList, TouchableOpacity, ActivityIndicator, Alert, Platform } from 'react-native';
+import { Text, View, FlatList, ActivityIndicator } from 'react-native';
 import NetUtil from "../../util/NetUtil";
 import Util from "../../util/Util";
 
@@ -14,9 +14,9 @@ import Util from "../../util/Util";
     data,
     // 是否打开上下拉刷新 
     isOpenRefreshing,
-    // 二次处理数据 
+    // 二次处理数据
     dataFrom,
-    // Item创建 
+    // Item创建
     renderView,
     // item分割线 
     separatorView,
@@ -67,7 +67,9 @@ export default class BaseTableView extends PureComponent {
             });
         }
     }
-
+    shouldComponentUpdate(nextProps, nextState) {
+        return (this.props.item != nextProps.item || this.props.select != nextProps.select);
+    }
 
     /** 二次处理数据 */
     _dataFrom(data) {
@@ -80,7 +82,11 @@ export default class BaseTableView extends PureComponent {
 
     /** 指定ID为列表Item的Key */
     _extraUniqueKey(item, index) {
-        return "index" + index + item.id || item.title;
+        if (typeof (this.props.extraUniqueKey) === 'function') {
+            return this.props.extraUniqueKey(item, index);
+        } else {
+            return "index" + index + item.id || item.title;
+        }
     }
 
     /** 加载列表Item视图 */
@@ -235,7 +241,7 @@ export default class BaseTableView extends PureComponent {
                         //隐藏垂直
                         showsVerticalScrollIndicator={false}
                         //item标识
-                        keyExtractor={this._extraUniqueKey}
+                        keyExtractor={this._extraUniqueKey.bind(this)}
                         //item显示的布局
                         renderItem={this._renderItem.bind(this)}
                         //分割线
@@ -249,8 +255,8 @@ export default class BaseTableView extends PureComponent {
                         onRefresh={isOpenRefreshing ? this._headerRefresh.bind(this) : null}
                         refreshing={isOpenRefreshing ? refreshing : isOpenRefreshing}
                         //加载更多
-                        onEndReached={isOpenRefreshing ? (Util.isAndroid() ? this._footReached.bind(this) : null) : null}
-                        onEndReachedThreshold={0.1}
+                        // onEndReached={isOpenRefreshing ? (Util.isAndroid() ? this._footReached.bind(this) : null) : null}
+                        // onEndReachedThreshold={0.1}
                         //滑动监听
                         onScroll={this._onScroll}
                         onScrollEndDrag={this._onScrollEndDrag}
